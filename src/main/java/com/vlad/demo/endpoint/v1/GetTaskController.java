@@ -13,6 +13,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 
 @RestController
+@RequestMapping(value = "/v1/task")
 public class GetTaskController {
 
     private final TaskService taskService;
@@ -22,7 +23,7 @@ public class GetTaskController {
         this.taskService = taskService;
     }
 
-    @RequestMapping(value="/v1/task/{taskId}", method = GET)
+    @RequestMapping(value = "/{taskId}", method = GET)
     public ResponseEntity getTask(@PathVariable  String taskId){
         final Task task = taskService.findTaskById(taskId);
         return ResponseEntity
