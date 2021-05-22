@@ -23,7 +23,7 @@ public class ExceptionHandlerDemoApplicationTest {
                 port(this.port).
                 get("/v1/task/1243").
                 then().assertThat().
-                statusCode(is(404));
+                statusCode(is(409));
     }
 
 }

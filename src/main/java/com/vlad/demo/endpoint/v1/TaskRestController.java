@@ -13,18 +13,18 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 
 @RestController
-@RequestMapping(value = "/v1/task")
-public class GetTaskController {
+@RequestMapping(value = "/v1/tasks")
+public class TaskRestController {
 
     private final TaskService taskService;
 
     @Autowired
-    public GetTaskController(TaskService taskService){
+    public TaskRestController(TaskService taskService){
         this.taskService = taskService;
     }
 
     @RequestMapping(value = "/{taskId}", method = GET)
-    public ResponseEntity getTask(@PathVariable  String taskId){
+    public ResponseEntity<Task> getTask(final @PathVariable  String taskId){
         final Task task = taskService.findTaskById(taskId);
         return ResponseEntity
                 .status(OK)
