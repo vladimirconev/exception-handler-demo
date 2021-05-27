@@ -6,7 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ErrorAttributes;
 import org.springframework.http.*;
-import org.springframework.util.CollectionUtils;
 import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.util.WebUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
@@ -74,7 +72,7 @@ public class RestExceptionHandler {
 
     @ResponseBody
     @ExceptionHandler(IllegalStateException.class)
-    protected ResponseEntity<String> handleNoSuchElementException(final IllegalStateException ex,
+    protected ResponseEntity<String> handleIllegalStateException(final IllegalStateException ex,
                                                                   final WebRequest webRequest) {
 
         return handleException(ex, HttpStatus.CONFLICT, webRequest, null);
